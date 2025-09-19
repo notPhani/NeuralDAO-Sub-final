@@ -82,7 +82,7 @@ This repository demonstrates a *full-stack patient query system* integrating:
 | File | Purpose |
 |------|---------|
 | app.py | Main server exposing API endpoints. |
-| model.py | Neural network model logic for DAO decisions. |
+| model.py | Neural network model logic for query decisions. |
 | patient_data_processing.py | Clean, segregate, merge patient CSVs, generate SQL tables. |
 | supabase_upload.py | Upload merged CSVs to Supabase Storage, generate URLs. |
 | duckdb_stress_test.py | Test query performance on all patient CSVs. |
