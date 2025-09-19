@@ -24,3 +24,17 @@ env/
 # OS files
 .DS_Store
 Thumbs.db
+# 1. Remove .env from tracking and add to .gitignore
+git rm --cached .env
+echo ".env" >> .gitignore
+echo "__pycache__/" >> .gitignore
+echo "*.pyc" >> .gitignore
+
+# 2. Stage the changes
+git add .gitignore
+
+# 3. Commit the fix
+git commit -m "Remove .env file and add .gitignore"
+
+# 4. Force push to fix the remote state
+git push origin main --force-with-lease
