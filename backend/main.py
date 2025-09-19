@@ -17,14 +17,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Import your existing classes
-from LLM_api import (
-    IntelligentClinicalRAGSystem, 
-    TreatmentRecommendation, 
-    RAGSummary
-)
-
-# Import the intelligent analyzer
-from LLM1 import IntelligentPatientAnalyzer
+from backend import * 
 
 # Initialize FastAPI app
 app = FastAPI(
