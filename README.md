@@ -132,44 +132,44 @@ NeuralDAO-Sub-final/
 
 1. *Clone Repo*
 
-#!/bin/bash
+```bash
 git clone https://github.com/Havish06/NeuralDAO-Sub-final.git
 cd NeuralDAO-Sub-final
-
+```
 
 2. *Backend*
 
-bash
+```bash
 cd backend
 pip install -r requirements.txt
 python app.py
-
+```
 
 3. *Frontend*
-
+```
 - Open frontend/index.html or use dev server for dynamic JS features.
-
+```
 4. *Patient CSV Processing*
 
-python
+```python
 from patient_data_processing import *
 create_master_patient_database('data/patients')
-
+```
 
 5. *Supabase Upload*
 
-python
+```python
 from supabase_upload import upload_all_patients_to_supabase
 upload_all_patients_to_supabase('data/patients')
-
+```
 
 6. *DuckDB Stress Test*
 
-python
+```python
 from duckdb_stress_test import stress_test_all_patients_real_columns
 stress_test_all_patients_real_columns('data/patients')
 
-
+```
 ---
 
 ## 📌 Next Steps
