@@ -132,7 +132,7 @@ NeuralDAO-Sub-final/
 
 1. *Clone Repo*
 
-bash
+#!/bin/bash
 git clone https://github.com/Havish06/NeuralDAO-Sub-final.git
 cd NeuralDAO-Sub-final
 
