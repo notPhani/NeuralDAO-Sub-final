@@ -19,8 +19,8 @@ class IntelligentClinicalRAGSystem:
     
     def __init__(self):
         # Supabase setup
-        self.supabase_url = "https://zrniucjsfcaqkewdjzrb.supabase.co"
-        self.supabase_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpybml1Y2pzZmNhcWtld2RqenJiIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1ODE4MTk2NywiZXhwIjoyMDczNzU3OTY3fQ.-quN5b5f-OGHZHmkttL1xJBcvavEAdrIUkpLiqag4zk"
+        self.supabase_url = os.getenv("SUPABASE_BASE_URL")
+        self.supabase_key = os.getenv("SUPABASE_KEY" )
         self.supabase = create_client(self.supabase_url, self.supabase_key)
         self.bucket_name = "clinical-data"
         
