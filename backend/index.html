@@ -1,0 +1,3065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DocPilot</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  /* ===================================
+   DOCPILOT - CLEAN CSS FILE
+   ================================== */
+
+/* Base Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: #000;
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+}
+/* AI Clinical Analysis Styles */
+.ai-section {
+  margin: 25px 0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.ai-header {
+  background: linear-gradient(135deg, #c1e328, #a0c020);
+  color: #000;
+  margin: 0;
+  padding: 15px 20px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 8px 8px 0 0;
+}
+
+.ai-content-box {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid #333;
+  border-top: none;
+  padding: 20px;
+  border-radius: 0 0 8px 8px;
+}
+
+.primary-problem {
+  border-left: 4px solid #ff6b6b;
+  background: rgba(255, 107, 107, 0.1);
+}
+
+.relevant-factors {
+  border-left: 4px solid #4ecdc4;
+}
+
+.excluded-factors {
+  border-left: 4px solid #95a5a6;
+  background: rgba(149, 165, 166, 0.05);
+}
+
+.priority-treatment {
+  border-left: 4px solid #f39c12;
+}
+
+.action-plan {
+  border-left: 4px solid #9b59b6;
+}
+
+.followup-care {
+  border-left: 4px solid #3498db;
+}
+
+.clinical-reasoning {
+  border-left: 4px solid #c1e328;
+}
+
+.references {
+  border-left: 4px solid #e74c3c;
+}
+
+/* Lists and Items */
+.medical-factors-list, .excluded-factors-list, .followup-list {
+  margin: 15px 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.medical-factor, .excluded-factor, .followup-item {
+  background: rgba(255, 255, 255, 0.03);
+  margin: 10px 0;
+  padding: 12px 15px;
+  border-radius: 6px;
+  border-left: 3px solid #c1e328;
+  line-height: 1.6;
+}
+
+.excluded-factor {
+  border-left-color: #95a5a6;
+  opacity: 0.8;
+  font-style: italic;
+}
+
+.priority-list {
+  margin: 15px 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.priority-item {
+  display: flex;
+  align-items: flex-start;
+  margin: 15px 0;
+  padding: 15px;
+  background: rgba(243, 156, 18, 0.1);
+  border-radius: 8px;
+  border-left: 4px solid #f39c12;
+}
+
+.priority-number {
+  background: #f39c12;
+  color: #000;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  margin-right: 15px;
+  flex-shrink: 0;
+}
+
+.action-steps {
+  margin: 15px 0;
+}
+
+.action-step {
+  margin: 20px 0;
+  background: rgba(155, 89, 182, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.step-header {
+  background: #9b59b6;
+  color: white;
+  padding: 10px 15px;
+  font-weight: 600;
+}
+
+.step-content {
+  padding: 15px;
+  line-height: 1.6;
+}
+
+/* Medical Text Formatting */
+.medical-term {
+  color: #c1e328;
+  font-weight: 600;
+}
+
+.medical-note {
+  color: #95a5a6;
+  font-size: 0.9em;
+}
+
+.citation {
+  color: #3498db;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.citation:hover {
+  color: #5dade2;
+}
+
+.vital-sign {
+  margin-right: 10px;
+}
+
+/* Benefits Grid */
+.ai-benefits {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #333;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.benefit-item {
+  background: rgba(193, 227, 40, 0.1);
+  padding: 12px;
+  border-radius: 6px;
+  border-left: 3px solid #c1e328;
+}
+
+/* Citations */
+.citation-item {
+  display: flex;
+  align-items: flex-start;
+  margin: 10px 0;
+  padding: 10px;
+  background: rgba(231, 76, 60, 0.1);
+  border-radius: 6px;
+}
+
+.citation-number {
+  background: #e74c3c;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+  margin-right: 10px;
+  font-size: 0.85em;
+}
+
+.citation-details {
+  line-height: 1.4;
+}
+
+/* Raw Response Toggle */
+.raw-response-toggle {
+  margin-top: 20px;
+}
+
+.raw-response-header {
+  color: #95a5a6;
+  cursor: pointer;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.raw-response-header:hover {
+  color: #bdc3c7;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.raw-response-content {
+  background: #111;
+  border-radius: 6px;
+  margin-top: 10px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.raw-response-content pre {
+  color: #ccc;
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  padding: 15px;
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+.factor-explanation {
+  margin-bottom: 15px;
+  color: #e0e0e0;
+  font-size: 1rem;
+}
+
+.filtering-benefit {
+  margin-top: 15px;
+  padding: 10px;
+  background: rgba(193, 227, 40, 0.1);
+  border-radius: 6px;
+  border-left: 3px solid #c1e328;
+}
+
+/* ===================================
+   LAYOUT - MAIN CONTENT
+   ================================== */
+
+.main-content {
+  flex: 1;
+  margin-left: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  min-height: 100vh;
+  color: #fff;
+  transition: margin-left 0.3s ease;
+  width: 100%;
+}
+
+.sidebar.collapsed ~ .main-content {
+  margin-left: 60px;
+}
+
+/* ===================================
+   SIDEBAR - CHATGPT STYLE
+   ================================== */
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 260px;
+  background: #202123;
+  border-right: 1px solid #444654;
+  transition: transform 0.3s ease;
+  z-index: 1000;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar.collapsed {
+  transform: translateX(-200px);
+  width: 60px;
+}
+
+.sidebar-wrap {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Two equal halves */
+.nav-half {
+  flex: 1 1 50%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  border-bottom: 1px solid #2c2d31;
+}
+
+.nav-half:last-child {
+  border-bottom: none;
+}
+
+/* Navigation titles */
+.nav-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #8e8ea0;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0 0 10px 0;
+}
+
+.title-text {
+  transition: opacity 0.2s;
+}
+
+/* Navigation actions - restricted width */
+.nav-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: nowrap;
+  margin-bottom: 12px;
+  max-width: 220px;
+}
+
+.nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: transparent;
+  border: 1px solid #565869;
+  border-radius: 6px;
+  color: #f7f7f8;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.2s;
+  width: 100%;
+  max-width: 220px;
+}
+
+.nav-btn:hover {
+  background: #343541;
+}
+
+.nav-btn i {
+  font-size: 16px;
+  min-width: 16px;
+}
+
+/* Navigation lists */
+.nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow-y: auto;
+  flex: 1 1 auto;
+}
+
+.nav-list li a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #f7f7f8;
+  font-size: 15px;
+  transition: background 0.2s;
+}
+
+.nav-list li a:hover {
+  background: #343541;
+}
+
+.nav-list li a i {
+  color: #8e8ea0;
+  min-width: 16px;
+}
+
+/* Collapsed text hiding */
+.sidebar.collapsed .title-text,
+.sidebar.collapsed .btn-text,
+.sidebar.collapsed .nav-list li a span {
+  display: none;
+}
+
+/* Toggle button */
+.sidebar-toggle {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  width: 40px;
+  height: 40px;
+  background: #202123;
+  border: 1px solid #565869;
+  border-radius: 6px;
+  color: #f7f7f8;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1100;
+  transition: all 0.2s;
+}
+
+.sidebar-toggle:hover {
+  background: #343541;
+}
+/* ===================================
+   SIDEBAR - FIXED TRANSLATION
+   ================================== */
+/* ===================================
+   SIDEBAR - ALWAYS STICKS TO EDGE
+   ================================== */
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 260px;
+  background: #202123;
+  border-right: 1px solid #444654;
+  z-index: 1000;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+  will-change: transform;
+}
+
+/* Collapsed state - sticks out 38px */
+.sidebar.collapsed {
+  transform: translateX(-222px);
+}
+
+.sidebar-wrap {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+/* ===================================
+   TOGGLE BUTTON - ALWAYS ON SIDEBAR EDGE
+   ================================== */
+
+.sidebar-toggle {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background: #202123;
+  border: 1px solid #565869;
+  border-radius: 6px;
+  color: #f7f7f8;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1100;
+  transition: all 0.3s ease;
+  /* Default position - right edge of expanded sidebar */
+  left: 244px;
+}
+
+.sidebar-toggle:hover {
+  background: #343541;
+}
+
+/* When collapsed - stick to the visible edge */
+.sidebar.collapsed + .sidebar-toggle {
+  left: 22px;
+}
+
+/* ===================================
+   AUTO-COLLAPSE ON SMALL SCREENS
+   ================================== */
+
+/* Auto-collapse when viewport < 75% */
+@media (max-width: 75vw) {
+  .sidebar:not(.force-expanded) {
+    transform: translateX(-222px);
+  }
+  
+  .sidebar.collapsed:not(.force-expanded) {
+    transform: translateX(-222px);
+  }
+  
+  .sidebar:not(.force-expanded) + .sidebar-toggle,
+  .sidebar.collapsed:not(.force-expanded) + .sidebar-toggle {
+    left: 22px;
+  }
+  
+  .main-content {
+    margin-left: 38px;
+  }
+}
+
+/* ===================================
+   MOBILE BEHAVIOR
+   ================================== */
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 260px;
+    transform: translateX(-100%) !important;
+  }
+  
+  .sidebar:not(.collapsed) {
+    transform: translateX(0) !important;
+  }
+  
+  .sidebar-toggle {
+    left: 16px !important;
+    top: 16px !important;
+    transform: none !important;
+  }
+  
+  .sidebar.collapsed + .sidebar-toggle,
+  .sidebar:not(.collapsed) + .sidebar-toggle {
+    left: 16px !important;
+  }
+  
+  .main-content,
+  .sidebar.collapsed ~ .main-content {
+    margin-left: 0 !important;
+  }
+}
+
+/* ===================================
+   MAIN CONTENT ADJUSTMENTS
+   ================================== */
+
+.main-content {
+  flex: 1;
+  margin-left: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  min-height: 100vh;
+  color: #fff;
+  transition: margin-left 0.3s ease;
+  width: 100%;
+}
+
+.sidebar.collapsed ~ .main-content {
+  margin-left: 38px;
+}
+
+/* ===================================
+   NAVIGATION SECTIONS (unchanged)
+   ================================== */
+
+.nav-half {
+  flex: 1 1 50%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  border-bottom: 1px solid #2c2d31;
+}
+
+.nav-half:last-child {
+  border-bottom: none;
+}
+
+.nav-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #8e8ea0;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0 0 10px 0;
+}
+
+.nav-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: nowrap;
+  margin-bottom: 12px;
+  max-width: 220px;
+}
+
+.nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: transparent;
+  border: 1px solid #565869;
+  border-radius: 6px;
+  color: #f7f7f8;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.2s;
+  width: 100%;
+  max-width: 220px;
+}
+
+.nav-btn:hover {
+  background: #343541;
+}
+
+.nav-btn i {
+  font-size: 16px;
+  min-width: 16px;
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow-y: auto;
+  flex: 1 1 auto;
+}
+
+.nav-list li a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #f7f7f8;
+  font-size: 15px;
+  transition: background 0.2s;
+}
+
+.nav-list li a:hover {
+  background: #343541;
+}
+
+.nav-list li a i {
+  color: #8e8ea0;
+  min-width: 16px;
+}
+
+/* Collapsed text hiding */
+.sidebar.collapsed .title-text,
+.sidebar.collapsed .btn-text,
+.sidebar.collapsed .nav-list li a span {
+  display: none;
+}
+
+
+/* ===================================
+   MAIN CONTENT ADJUSTMENT
+   ================================== */
+
+.main-content {
+  flex: 1;
+  margin-left: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  min-height: 100vh;
+  color: #fff;
+  transition: margin-left 0.3s ease;
+  width: 100%;
+}
+
+.sidebar.collapsed ~ .main-content {
+  margin-left: 0;
+}
+
+/* ===================================
+   RESPONSIVE
+   ================================== */
+
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+    width: 260px;
+  }
+  
+  .sidebar:not(.collapsed) {
+    transform: translateX(0);
+  }
+  
+  .main-content,
+  .sidebar.collapsed ~ .main-content {
+    margin-left: 0;
+  }
+  
+  .sidebar-toggle,
+  .sidebar:not(.collapsed) + .sidebar-toggle,
+  .sidebar.collapsed + .sidebar-toggle {
+    top: 16px !important;
+    bottom: auto !important;
+    left: 16px !important;
+  }
+}
+
+
+/* ===================================
+   WELCOME SCREEN
+   ================================== */
+
+.welcome-container {
+  background: #222;
+  border-radius: 20px;
+  padding: 50px 40px;
+  box-shadow: 0 20px 40px rgba(255, 255, 255, 0.1);
+  text-align: center;
+  width: 100%;
+  max-width: 600px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 500px; /* Ensure consistent height */
+}
+/* AI Processing Loader */
+.loading-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: #fff;
+}
+
+.spinner-ai {
+    width: 50px;
+    height: 50px;
+    border: 3px solid #444;
+    border-top: 3px solid #c1e328;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+.progress-steps {
+    margin-top: 30px;
+}
+
+.step {
+    padding: 10px;
+    margin: 5px 0;
+    background: #222;
+    border-radius: 6px;
+    opacity: 0.5;
+    transition: opacity 0.3s;
+}
+
+.step.active {
+    opacity: 1;
+    background: #2a2a2a;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+.welcome-header {
+  margin-bottom: 60px;
+  opacity: 0;
+  animation: fadeInDown 0.8s ease-out 0.3s forwards;
+  color: #fff;
+}
+
+.welcome-heading {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.welcome-subtitle {
+  font-size: 1.2rem;
+  color: #ccc;
+}
+
+/* Search */
+.search-container {
+  position: relative;
+  margin-bottom: 30px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideInUp 0.8s ease-out 0.6s forwards;
+  width: 100%;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.search-box {
+  width: 100%;
+  padding: 18px 25px;
+  font-size: 1.1rem;
+  border: 2px solid #555;
+  border-radius: 50px;
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+  background: #000;
+  color: #fff;
+}
+
+.search-box:focus {
+  border-color: #c1e328;
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
+}
+
+.search-box::placeholder {
+  color: #888;
+}
+
+.search-icon {
+  position: absolute;
+  background-color: #1a1a1a;
+  border: 2px solid #666;
+  border-radius: 50%;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(193, 227, 40, 0.6);
+  font-size: 1.2rem;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.search-icon:hover {
+  border-color: rgba(193, 227, 40, 0.7);
+  box-shadow: 0 0 8px rgba(193, 227, 40, 0.5);
+  color: rgba(193, 227, 40, 0.8);
+}
+
+/* Welcome footer */
+.welcome-footer {
+  margin-top: 40px;
+  opacity: 0;
+  animation: fadeIn 1s ease-out 0.9s forwards;
+  color: #ccc;
+  width: 100%;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.feature-list {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+  min-height: 40px; /* Prevent layout shift */
+}
+
+.feature-item:hover {
+  color: #c1e328;
+}
+
+.feature-item:hover .feature-icon {
+  color: #c1e328;
+}
+
+.feature-icon {
+  color: #fff;
+  font-size: 1rem;
+}
+
+/* Decorations */
+.decoration {
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(45deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.05));
+  filter: blur(40px);
+  z-index: -1;
+}
+
+.decoration-1 {
+  width: 200px;
+  height: 200px;
+  top: -50px;
+  right: -50px;
+  animation: float 8s ease-in-out infinite;
+}
+
+.decoration-2 {
+  width: 150px;
+  height: 150px;
+  bottom: -30px;
+  left: -30px;
+  animation: float 10s ease-in-out infinite reverse;
+}
+
+/* ===================================
+   RESULTS & TABLES
+   ================================== */
+
+/* Results container */
+.results-container {
+  color: #888;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-size: 0.95rem;
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  transition: all 0.3s ease;
+  display: none;
+}
+
+.results-container.active {
+  display: block;
+  animation: none;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 20px 0;
+}
+
+.results-container:hover {
+  color: #ccc;
+}
+
+/* Results header */
+.results-header {
+  margin-bottom: 30px;
+}
+
+.results-header h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #999;
+  margin: 0 0 20px 0;
+  transition: color 0.3s ease;
+}
+
+.results-container:hover .results-header h2 {
+  color: #c1e328;
+}
+
+/* Stats row */
+.stats-row {
+  display: flex;
+  gap: 30px;
+  margin: 15px 0 30px 0;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.stat-item {
+  transition: color 0.3s ease;
+}
+
+.stat-item:hover {
+  color: #c1e328;
+}
+
+/* Minimal Table */
+.minimal-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', monospace;
+  font-size: 0.85rem;
+  color: #888;
+  background: transparent;
+  margin: 20px 0;
+}
+
+.minimal-table thead {
+  display: table-header-group;
+}
+
+.minimal-table th {
+  padding: 8px 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #666;
+  text-align: left;
+  border-bottom: 1px solid #444;
+  background: transparent;
+  text-transform: capitalize;
+}
+
+.minimal-table th:first-child {
+  padding-left: 0;
+}
+
+.minimal-table:hover th {
+  color: #999;
+}
+
+.minimal-table tbody tr {
+  border-bottom: 1px solid #333;
+  transition: all 0.2s ease;
+}
+
+.minimal-table tbody tr:hover {
+  background-color: #1a1a1a;
+  color: #ccc;
+}
+
+.minimal-table tbody td {
+  padding: 8px 12px;
+  border: none;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 150px;
+  white-space: nowrap;
+}
+
+.minimal-table tbody td:first-child {
+  padding-left: 0;
+}
+
+/* ===================================
+   TEXT CONTENT (RECOMMENDATIONS & SUMMARY)
+   ================================== */
+
+.text-content {
+  margin: 20px 0;
+  padding: 0;
+  color: #888;
+  line-height: 1.5;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+}
+
+.text-content:hover {
+  color: #ccc;
+}
+
+.text-content h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #aaa;
+  margin: 0 0 8px 0;
+  transition: color 0.3s ease;
+}
+
+.text-content:hover h3 {
+  color: #c1e328;
+}
+
+.text-content p,
+.text-content div {
+  margin: 6px 0;
+  color: inherit;
+}
+
+.text-content strong {
+  color: #c1e328;
+  font-weight: 600;
+  display: block;
+  margin-top: 12px;
+  margin-bottom: 4px;
+}
+
+.text-content a {
+  color: #888;
+  text-decoration: none;
+  margin-right: 8px;
+  font-size: 0.9rem;
+}
+
+.text-content a:hover {
+  color: #c1e328;
+  text-decoration: underline;
+}
+
+/* ===================================
+   LOADING & ALERTS
+   ================================== */
+
+.loading-spinner {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+}
+
+.spinner {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border: 3px solid rgba(193, 227, 40, 0.3);
+  border-top: 3px solid #c1e328;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 15px;
+}
+
+.error-message {
+  background: #660000;
+  color: #ff6666;
+  padding: 20px;
+  border-radius: 10px;
+  border-left: 4px solid #ff0000;
+  margin: 20px 0;
+}
+
+.success-message {
+  background: #006600;
+  color: #66ff66;
+  padding: 20px;
+  border-radius: 10px;
+  border-left: 4px solid #00ff00;
+  margin: 20px 0;
+}
+
+/* ===================================
+   MODAL
+   ================================== */
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 3000;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: #222;
+  border-radius: 15px;
+  padding: 30px 40px;
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 40px rgba(255, 255, 255, 0.1);
+  color: #fff;
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #ccc;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+/* Replace the complex priority-list and action-steps with simple table styling */
+.priority-treatment-table,
+.action-plan-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'SF Mono', Monaco, 'Inconsolata', monospace;
+  font-size: 0.85rem;
+  color: #888;
+  background: transparent;
+  margin: 20px 0;
+}
+
+.priority-treatment-table th,
+.action-plan-table th {
+  padding: 8px 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #666;
+  text-align: left;
+  border-bottom: 1px solid #444;
+  background: transparent;
+}
+
+.priority-treatment-table tbody tr,
+.action-plan-table tbody tr {
+  border-bottom: 1px solid #333;
+  transition: all 0.2s ease;
+}
+
+.priority-treatment-table tbody tr:hover,
+.action-plan-table tbody tr:hover {
+  background-color: #1a1a1a;
+  color: #ccc;
+}
+
+.priority-treatment-table tbody td,
+.action-plan-table tbody td {
+  padding: 8px 12px;
+  border: none;
+  vertical-align: top;
+  line-height: 1.4;
+}
+
+.priority-number-cell {
+  width: 60px;
+  text-align: center;
+  font-weight: bold;
+  color: #c1e328;
+}
+
+.step-number-cell {
+  width: 80px;
+  text-align: center;
+  font-weight: bold;
+  color: #9b59b6;
+}
+
+/* Remove the old complex styling */
+.priority-list,
+.action-steps,
+.priority-item,
+.action-step {
+  display: none !important;
+}
+
+.close-btn:hover {
+  color: #fff;
+}
+
+/* Form styles */
+#addPatientForm {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px 36px;
+}
+
+#addPatientForm label {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 6px;
+  color: #ccc;
+  display: block;
+}
+
+#addPatientForm input[type="text"] {
+  padding: 12px 16px;
+  font-size: 1rem;
+  border: 2px solid #555;
+  border-radius: 10px;
+  background: #000;
+  color: #fff;
+  outline: none;
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+#addPatientForm input[type="text"]:focus {
+  border-color: #c1e328;
+  box-shadow: 0 0 7px #c1e328;
+}
+
+#addPatientForm button {
+  grid-column: 1 / -1;
+  padding: 14px 0;
+  margin-top: 20px;
+  border: none;
+  border-radius: 12px;
+  background-color: #c1e328;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: #000;
+  transition: background-color 0.3s ease;
+}
+
+#addPatientForm button:hover {
+  background-color: #9bb633;
+}
+
+#addPatientForm button:disabled {
+  background-color: #666;
+  cursor: not-allowed;
+}
+
+/* ===================================
+   ANIMATIONS
+   ================================== */
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Replace the existing bright colors with more muted ones */
+.ai-header {
+  background: linear-gradient(135deg, #4a5c2a, #3d4d20);  /* More muted green */
+  color: #fff;  /* White text instead of black */
+}
+
+.primary-problem {
+  border-left: 4px solid #cc5555;  /* Muted red instead of #ff6b6b */
+  background: rgba(204, 85, 85, 0.05);  /* Much lighter background */
+}
+
+.relevant-factors {
+  border-left: 4px solid #3a9d96;  /* Muted teal instead of #4ecdc4 */
+}
+
+.priority-treatment {
+  border-left: 4px solid #d4a012;  /* Muted orange instead of #f39c12 */
+}
+
+.action-plan {
+  border-left: 4px solid #7a4d96;  /* Muted purple instead of #9b59b6 */ 
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(5deg);
+  }
+}
+
+/* ===================================
+   RESPONSIVE DESIGN
+   ================================== */
+
+@media (max-width: 992px) {
+  .main-content {
+    margin-left: 220px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+  
+  .sidebar:not(.collapsed) {
+    transform: translateX(0);
+  }
+  
+  .main-content,
+  .sidebar.collapsed ~ .main-content {
+    margin-left: 0;
+  }
+  
+  .sidebar-toggle {
+    left: 16px;
+  }
+  
+  .nav-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .nav-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .welcome-heading {
+    font-size: 2.2rem;
+  }
+  
+  .feature-list {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .stats-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+/* ===================================
+   BUTTON HOVER EFFECTS
+   ================================== */
+
+button:hover {
+  background-color: #1a1a1a !important;
+  border-color: #666 !important;
+  color: #ccc !important;
+}
+
+button:active {
+  background-color: #333 !important;
+}
+
+</style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<aside class="sidebar collapsed" id="sidebar">
+  <div class="sidebar-wrap">
+    <!-- New Sessions half -->
+    <section class="nav-half" id="sessionsHalf">
+      <h3 class="nav-title">
+        <i class="fas fa-comments"></i>
+        <span class="title-text">New Sessions</span>
+      </h3>
+      <div class="nav-actions">
+        <button class="nav-btn" id="newSessionBtn">
+          <i class="fas fa-plus"></i>
+          <span class="btn-text">New Session</span>
+        </button>
+      </div>
+      <ul class="nav-list" id="sessionsList">
+        <!-- Optional: recent sessions (dynamic) -->
+      </ul>
+    </section>
+
+    <!-- Patient Management half -->
+    <section class="nav-half" id="patientsHalf">
+      <h3 class="nav-title">
+        <i class="fas fa-user-md"></i>
+        <span class="title-text">Patient Management</span>
+      </h3>
+      <div class="nav-actions">
+        <button class="nav-btn" id="addPatientBtn">
+          <i class="fas fa-user-plus"></i>
+          <span class="btn-text">Add Patient</span>
+        </button>
+        <button class="nav-btn" id="viewPatientsBtn">
+          <i class="fas fa-users"></i>
+          <span class="btn-text">View Patients</span>
+        </button>
+      </div>
+      <ul class="nav-list" id="patientsList">
+        <!-- Optional: quick access patients (dynamic) -->
+      </ul>
+    </section>
+  </div>
+</aside>
+
+<!-- Toggle -->
+<button class="sidebar-toggle" id="toggleBtn" aria-label="Toggle sidebar">
+  <i class="fas fa-bars"></i>
+</button>
+
+
+
+<!-- Main Content -->
+<div class="main-content" id="mainContent">
+  <div class="welcome-container">
+    <div class="decoration decoration-1"></div>
+    <div class="decoration decoration-2"></div>
+    <div class="welcome-header">
+      <h1 class="welcome-heading">Doc Pilot</h1>
+      <p class="welcome-subtitle">AI-powered clinical decision support system</p>
+    </div>
+    <div class="search-container">
+      <input type="text" class="search-box" id="searchInput" 
+             placeholder="Enter clinical query (e.g., 'Show medications for patient 006c29d1...')">
+      <div class="search-icon" id="searchButton"><i class="fas fa-search"></i></div>
+    </div>
+    <div class="welcome-footer">
+      <p style="color: #718096; margin-bottom: 15px;">What you can do:</p>
+      <div class="feature-list">
+        <div class="feature-item">
+          <i class="fas fa-brain feature-icon"></i><span>AI-powered clinical queries</span>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-chart-line feature-icon"></i><span>Data analysis & insights</span>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-prescription-bottle feature-icon"></i><span>Treatment recommendations</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="addPatientModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" id="closeModal">&times;</span>
+    <h2>Add Patient Data</h2>
+    <hr style="margin: 20px 0; border: 1px solid #444;" />
+    <form id="addPatientForm">
+      <label for="patientDetails">Patient Personal Details:</label>
+      <input type="text" id="patientDetails" name="patientDetails" 
+             placeholder='{"name":"John Doe", "age":30, "gender":"Male"}' required>
+
+      <label for="conditions">Conditions:</label>
+      <input type="text" id="conditions" name="conditions" 
+             placeholder='["Diabetes", "Hypertension"]' required>
+
+      <label for="immunizations">Immunizations:</label>
+      <input type="text" id="immunizations" name="immunizations" 
+             placeholder='["Flu vaccine", "Hepatitis B"]' required>
+
+      <label for="medications">Medications:</label>
+      <input type="text" id="medications" name="medications" 
+             placeholder='["Metformin", "Amlodipine"]' required>
+
+      <label for="observations">Observations:</label>
+      <input type="text" id="observations" name="observations" 
+             placeholder='{"bloodPressure":"120/80", "pulse":72}' required>
+
+      <label for="procedures">Procedures (JSON):</label>
+      <input type="text" id="procedures" name="procedures" 
+             placeholder='["Appendectomy", "Colonoscopy"]' required>
+
+      <label for="supplies">Supplies (JSON):</label>
+      <input type="text" id="supplies" name="supplies" 
+             placeholder='["Gauze", "Syringe"]' required>
+
+      <label for="carePlans">Care Plans (JSON):</label>
+      <input type="text" id="carePlans" name="carePlans" 
+             placeholder='["Regular exercise", "Diet control"]' required>
+      
+<div class="form-group">
+    <label for="currentComplaint">Current Complaint:</label>
+    <textarea 
+        id="currentComplaint" 
+        name="currentComplaint" 
+        placeholder="Describe the patient's current complaint in detail..."
+        rows="3"
+        style="
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #444;
+            border-radius: 4px;
+            background: #222;
+            color: #fff;
+            font-family: inherit;
+            resize: vertical;
+        "
+    ></textarea>
+    <small style="color: #888; font-size: 0.85rem;">
+        Example: "Fell down today, severe pain in leg, unable to bear weight"
+    </small>
+</div>
+
+      <button type="button" id="submitPatientForm" class="submit-btn">
+  Add Patient & Analyze
+</button>
+    </form>
+  </div>
+</div><script>
+// ============================================================================
+// HARDCODED API CONFIGURATION
+// ============================================================================
+
+const API_BASE = 'http://localhost:8000/api';
+console.log('🔗 API Base URL:', API_BASE);
+
+// ============================================================================
+// GLOBAL VARIABLES
+// ============================================================================
+
+let resultsContainer = null;
+let currentSession = null;
+
+// ============================================================================
+// API FUNCTIONS
+// ============================================================================
+
+async function callTextQueryAPI(query, patientId = null) {
+  try {
+    console.log('📡 Calling /api/text-query with:', { query, patient_id: patientId });
+    
+    const response = await fetch(`${API_BASE}/text-query`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query: query,
+        patient_id: patientId
+      })
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.detail || `API Error: ${response.status}`);
+    }
+
+    return await response.json();
+    
+  } catch (error) {
+    console.error('❌ Text Query API Error:', error);
+    throw error;
+  }
+}
+
+async function callSummarizeAPI(tableData, query) {
+  try {
+    console.log('📡 Calling /api/summarize with:', { table_data: tableData, query });
+    
+    const response = await fetch(`${API_BASE}/summarize`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        table_data: tableData,
+        query: query
+      })
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.detail || `API Error: ${response.status}`);
+    }
+
+    return await response.json();
+    
+  } catch (error) {
+    console.error('❌ Summarize API Error:', error);
+    throw error;
+  }
+}
+
+async function callAddPatientAPI(patientData) {
+  try {
+    console.log('📡 Calling /api/add-patient with:', patientData);
+    
+    const response = await fetch(`${API_BASE}/add-patient`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(patientData)
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.detail || `API Error: ${response.status}`);
+    }
+
+    return await response.json();
+    
+  } catch (error) {
+    console.error('❌ Add Patient API Error:', error);
+    throw error;
+  }
+}
+
+async function callNewSessionAPI() {
+  try {
+    console.log('📡 Calling /api/new-session');
+    
+    const response = await fetch(`${API_BASE}/new-session`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({})
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.detail || `API Error: ${response.status}`);
+    }
+
+    return await response.json();
+    
+  } catch (error) {
+    console.error('❌ New Session API Error:', error);
+    throw error;
+  }
+}
+
+// SESSION MANAGEMENT section - add these functions
+async function handleViewPatients() {
+  try {
+    console.log('📋 Loading patients list...');
+    showResultsArea();
+    showLoading();
+    
+    const result = await callViewPatientsAPI();
+    console.log('📋 View Patients API Result:', result);
+    
+    if (result.success) {
+      renderResults(result); // Use your existing renderResults function
+      showSuccessNotification(`Found ${result.patient_folders?.length || 0} patients in database!`);
+    } else {
+      throw new Error(result.error || 'Failed to load patients');
+    }
+  } catch (error) {
+    console.error('View patients failed:', error);
+    showErrorInResults(error.message);
+  }
+}
+
+// API FUNCTIONS (add this with your other API functions)
+async function callViewPatientsAPI() {
+  try {
+    console.log('📋 Calling /api/list-patients...');
+    const response = await fetch(`${API_BASE}/list-patients`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+    
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.detail || `API Error ${response.status}`);
+    }
+    
+    return await response.json();
+  } catch (error) {
+    console.error('List Patients API Error:', error);
+    throw error;
+  }
+}
+
+
+async function callHealthAPI() {
+  try {
+    const response = await fetch(`${API_BASE}/health`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`Health check failed: ${response.status}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error('❌ Health API Error:', error);
+    throw error;
+  }
+}
+
+// ============================================================================
+// UTILITY FUNCTIONS - DEFINED FIRST
+// ============================================================================
+
+function convertToCSV(data) {
+  if (!data || data.length === 0) return '';
+  
+  const keys = Object.keys(data[0]);
+  const csvHeader = keys.join(',');
+  
+  const csvRows = data.map(row => 
+    keys.map(key => {
+      const value = row[key] === null || row[key] === undefined ? '' : String(row[key]);
+      return `"${value.replace(/"/g, '""')}"`;
+    }).join(',')
+  );
+  
+  return [csvHeader, ...csvRows].join('\n');
+}
+
+function downloadPatientDataCSV(patientData) {
+  const csvData = convertPatientToCSV(patientData);
+  const blob = new Blob([csvData], { type: 'text/csv' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = `patient_${patientData.personal_details?.name || 'data'}_${new Date().toISOString().split('T')[0]}.csv`;
+  link.click();
+  URL.revokeObjectURL(url);
+}
+
+function convertPatientToCSV(data) {
+  const headers = ['Field', 'Value'];
+  const rows = [
+    ['Name', data.personal_details?.name || ''],
+    ['Age', data.personal_details?.age || ''],
+    ['Gender', data.personal_details?.gender || ''],
+    ['Current Complaint', data.current_complaint || ''],
+    ['Medical History', Array.isArray(data.medical_history) ? data.medical_history.join('; ') : ''],
+    ['Current Medications', Array.isArray(data.current_medications) ? data.current_medications.join('; ') : '']
+  ];
+  
+  const csvContent = [headers, ...rows].map(row => 
+    row.map(field => `"${field}"`).join(',')
+  ).join('\n');
+  
+  return csvContent;
+}
+
+// SETUP DOWNLOAD BUTTONS - NOW DEFINED BEFORE renderResults
+function setupDownloadButtons(data) {
+  setTimeout(() => {
+    const downloadPatientBtn = document.getElementById('downloadPatientCsv');
+    const downloadQueryBtn = document.getElementById('downloadQueryCsv');
+    
+    if (downloadPatientBtn && data.original_data) {
+      downloadPatientBtn.addEventListener('click', () => {
+        downloadPatientDataCSV(data.original_data);
+      });
+      
+      downloadPatientBtn.addEventListener('mouseenter', () => {
+        downloadPatientBtn.style.borderColor = '#666';
+        downloadPatientBtn.style.color = '#ccc';
+      });
+      downloadPatientBtn.addEventListener('mouseleave', () => {
+        downloadPatientBtn.style.borderColor = '#444';
+        downloadPatientBtn.style.color = '#888';
+      });
+    }
+    
+    if (downloadQueryBtn && data.rag_data?.raw_data) {
+      downloadQueryBtn.addEventListener('click', () => {
+        const csvData = convertToCSV(data.rag_data.raw_data);
+        const blob = new Blob([csvData], { type: 'text/csv' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `clinical_query_${new Date().toISOString().split('T')[0]}.csv`;
+        link.click();
+        URL.revokeObjectURL(url);
+      });
+      
+      downloadQueryBtn.addEventListener('mouseenter', () => {
+        downloadQueryBtn.style.borderColor = '#666';
+        downloadQueryBtn.style.color = '#ccc';
+      });
+      downloadQueryBtn.addEventListener('mouseleave', () => {
+        downloadQueryBtn.style.borderColor = '#444';
+        downloadQueryBtn.style.color = '#888';
+      });
+    }
+  }, 100);
+}
+
+// ============================================================================
+// UI FUNCTIONS
+// ============================================================================
+
+function createResultsContainer() {
+  if (!resultsContainer) {
+    resultsContainer = document.createElement('div');
+    resultsContainer.classList.add('results-container');
+    resultsContainer.id = 'results';
+  }
+  return resultsContainer;
+}
+
+function showResultsArea() {
+  const welcomeContainer = document.getElementsByClassName('welcome-container')[0];
+  const mainContent = document.getElementsByClassName('main-content')[0];
+  const searchContainer = document.getElementsByClassName('search-container')[0];
+  
+  welcomeContainer.style.display = 'none';
+  mainContent.style.background = '#000';
+  mainContent.style.alignItems = 'flex-start';
+  mainContent.style.justifyContent = 'flex-start';
+  mainContent.style.paddingTop = '20px';
+  
+  const container = createResultsContainer();
+  
+  if (!mainContent.contains(container)) {
+    mainContent.appendChild(container);
+  }
+  
+  if (!mainContent.contains(searchContainer)) {
+    mainContent.insertBefore(searchContainer, container);
+  }
+  
+  searchContainer.style.position = 'relative';
+  searchContainer.style.marginBottom = '30px';
+  searchContainer.style.maxWidth = '800px';
+  searchContainer.style.width = '100%';
+  
+  container.classList.add('active');
+}
+
+function showLoading() {
+  const container = createResultsContainer();
+  container.innerHTML = `
+    <div class="loading-spinner">
+      <div class="spinner"></div>
+      <p>🧠 Processing your clinical query with AI...</p>
+      <p style="font-size: 0.9rem; color: #888; margin-top: 10px;">This may take a few moments</p>
+    </div>
+  `;
+}
+
+function showAIProcessingLoader() {
+  const container = createResultsContainer();
+  container.innerHTML = `
+    <div class="loading-state" style="text-align: center; padding: 60px 20px; color: #fff;">
+      <div class="spinner-ai" style="
+        width: 50px; height: 50px; border: 3px solid #444;
+        border-top: 3px solid #c1e328; border-radius: 50%;
+        animation: spin 1s linear infinite; margin: 0 auto 20px;
+      "></div>
+      <h3>🧠 AI Clinical Analysis in Progress</h3>
+      <p>Analyzing patient data and filtering relevant factors...</p>
+      <div class="progress-steps" style="margin-top: 30px;">
+        <div class="step active" style="padding: 8px; margin: 5px 0; background: #2a2a2a; border-radius: 4px;">📋 Processing patient data</div>
+        <div class="step active" style="padding: 8px; margin: 5px 0; background: #2a2a2a; border-radius: 4px;">🔍 Filtering medical history</div>
+        <div class="step active" style="padding: 8px; margin: 5px 0; background: #2a2a2a; border-radius: 4px;">⚡ Prioritizing treatments</div>
+        <div class="step active" style="padding: 8px; margin: 5px 0; background: #2a2a2a; border-radius: 4px;">📊 Generating analysis</div>
+      </div>
+    </div>
+  `;
+}
+
+function showError(message) {
+  const container = createResultsContainer();
+  container.innerHTML = `
+    <div class="error-message">
+      <h3><i class="fas fa-exclamation-triangle"></i> Query Failed</h3>
+      <p><strong>Error:</strong> ${message}</p>
+      <p>Please check your query and try again.</p>
+    </div>
+  `;
+}
+
+function showErrorInResults(errorMessage) {
+  const container = createResultsContainer();
+  container.innerHTML = `
+    <div class="error-state" style="text-align: center; padding: 40px; color: #ff6b6b;">
+      <h3>❌ Error Occurred</h3>
+      <p>${errorMessage}</p>
+      <button onclick="location.reload()" style="
+        margin-top: 15px; padding: 10px 20px; 
+        background: #ff4444; color: white; border: none; 
+        border-radius: 6px; cursor: pointer;
+      ">Try Again</button>
+    </div>
+  `;
+}
+
+function showSuccessNotification(message) {
+  const toast = document.createElement('div');
+  toast.style.cssText = `
+    position: fixed; top: 20px; right: 20px; z-index: 9999;
+    background: #2d5a3d; color: #90ee90; padding: 15px 20px;
+    border-radius: 8px; border-left: 4px solid #90ee90;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    animation: slideInRight 0.3s ease-out;
+  `;
+  toast.textContent = message;
+  document.body.appendChild(toast);
+  
+  setTimeout(() => {
+    toast.remove();
+  }, 4000);
+}
+
+// ============================================================================
+// TABLE CREATION FUNCTIONS
+// ============================================================================
+
+function createMinimalTable(data) {
+  if (!data || data.length === 0) {
+    return '<p style="color: #666; font-style: italic;">No data available</p>';
+  }
+
+  const columns = Object.keys(data[0]);
+  
+  let html = `
+    <table class="minimal-table">
+      <thead>
+        <tr>
+  `;
+  
+  columns.forEach(col => {
+    const cleanHeader = col.replace(/_/g, ' ').toLowerCase();
+    html += `<th>${cleanHeader}</th>`;
+  });
+  
+  html += `
+        </tr>
+      </thead>
+      <tbody>
+  `;
+  
+  data.forEach(row => {
+    html += '<tr>';
+    columns.forEach(col => {
+      const value = row[col];
+      let displayValue = '';
+      
+      if (value === null || value === undefined || value === '') {
+        displayValue = '—';
+      } else {
+        displayValue = String(value).length > 50 ? 
+          String(value).substring(0, 50) + '...' : 
+          String(value);
+      }
+      
+      html += `<td title="${String(value)}">${displayValue}</td>`;
+    });
+    html += '</tr>';
+  });
+  
+  html += '</tbody></table>';
+  return html;
+}
+
+function extractTreatmentText(treatmentData) {
+  if (!treatmentData) return "No treatment recommendations available.";
+  
+  let recommendations = treatmentData.treatment_recommendations || 
+                       treatmentData.recommendations || 
+                       treatmentData;
+  
+  if (typeof recommendations === 'string') {
+    return recommendations;
+  }
+  
+  if (typeof recommendations === 'object') {
+    let formattedText = [];
+    
+    function formatContent(content) {
+      if (typeof content === 'string') {
+        return content.replace(/\.,/g, '.<br>• ').replace(/\. /g, '.<br>• ');
+      } else if (Array.isArray(content)) {
+        return content.join('<br>• ');
+      } else if (typeof content === 'object') {
+        return JSON.stringify(content, null, 2);
+      }
+      return String(content);
+    }
+    
+    if (recommendations.general_recommendations) {
+      const formatted = formatContent(recommendations.general_recommendations);
+      formattedText.push(`<strong>General Recommendations:</strong><br>• ${formatted}`);
+    }
+    
+    if (recommendations.follow_up_actions) {
+      const formatted = formatContent(recommendations.follow_up_actions);
+      formattedText.push(`<strong>Follow-up Actions:</strong><br>• ${formatted}`);
+    }
+    
+    if (recommendations.primary_care || recommendations.primary_treatment) {
+      const content = recommendations.primary_care || recommendations.primary_treatment;
+      const formatted = formatContent(content);
+      formattedText.push(`<strong>Primary Treatment:</strong><br>• ${formatted}`);
+    }
+    
+    if (recommendations.sources) {
+      let sources = recommendations.sources;
+      if (Array.isArray(sources)) {
+        const citations = sources.map((url, index) => 
+          `<a href="${url}" target="_blank" style="color: #888; text-decoration: none;">[${index + 1}]</a>`
+        ).join(' ');
+        formattedText.push(`<strong>References:</strong> ${citations}`);
+      }
+    }
+    
+    return formattedText.length > 0 ? 
+      formattedText.join('<br><br>') : 
+      'Treatment recommendations available - contact your healthcare provider.';
+  }
+  
+  return String(recommendations);
+}
+
+function extractSummaryText(summaryData) {
+  if (!summaryData) return "No summary available.";
+  
+  let summary = summaryData.summary || summaryData;
+  
+  if (typeof summary === 'string') {
+    return summary;
+  }
+  
+  if (typeof summary === 'object') {
+    if (summary.clinical_summary) return summary.clinical_summary;
+    if (summary.key_findings) return summary.key_findings;
+    if (summary.analysis) return summary.analysis;
+    if (summary.conclusion) return summary.conclusion;
+    
+    let textParts = [];
+    Object.entries(summary).forEach(([key, value]) => {
+      if (value && typeof value === 'string' && value.length > 10) {
+        textParts.push(value);
+      }
+    });
+    
+    return textParts.length > 0 ? textParts.join(' ') : JSON.stringify(summary, null, 2);
+  }
+  
+  return String(summary);
+}
+
+// ============================================================================
+// MAIN RENDERING FUNCTIONS - NOW setupDownloadButtons IS DEFINED
+// ============================================================================
+
+// Update your existing renderResults function
+function renderResults(data, summaryData = null) {
+  const container = createResultsContainer();
+  
+  console.log('🔍 DEBUG: Full data object:', JSON.stringify(data, null, 2));
+  console.log('🔍 DEBUG: data.aianalysis exists:', !!data.aianalysis);
+  console.log('🔍 DEBUG: data.ai_analysis exists:', !!data.ai_analysis);
+  console.log('🔍 DEBUG: data.patientid exists:', !!data.patientid);
+  console.log('🔍 DEBUG: data.patient_id exists:', !!data.patient_id);
+  
+  if (!data || !data.success) {
+    showErrorInResults('No results found or analysis failed.');
+    return;
+  }
+
+  // Check for different data types
+  const isAIPatientAnalysis = data.treatment_recommendations && data.patient_id;
+  const isPatientList = data.patient_folders && Array.isArray(data.patient_folders);
+  
+  let html = '';
+
+  if (isPatientList) {
+    // Render patient list view
+    html += renderViewPatients(data);
+  } else if (isAIPatientAnalysis) {
+    // Render AI patient analysis
+    html += renderAIPatientAnalysis(data);
+  } else {
+    // Render regular DB query results
+    html += renderDBQueryResults(data, summaryData);
+  }
+
+  container.innerHTML = html;
+  setupDownloadButtons(data);
+  
+  // Setup download button for patient list
+  if (isPatientList) {
+    setupPatientListDownloadButton(data);
+  }
+}
+
+
+function renderAIPatientAnalysis(data) {
+  const aiAnalysis = data.treatment_recommendations?.treatment_recommendations;
+  const originalData = data.rag_data?.raw_data?.[0];  // Fixed data path
+  
+  console.log('🎨 DEBUG: Rendering AI analysis:', aiAnalysis);
+  
+  let html = `
+    <div class="results-header">
+      <h2>🧠 AI Clinical Analysis Results</h2>
+      <div class="stats-row">
+        <span class="stat-item">Patient: ${originalData?.name || 'Unknown'}</span>
+        <span class="stat-item">Age: ${originalData?.age || 'Unknown'}</span>
+        <span class="stat-item">🔬 Perplexity Pro Analysis</span>
+      </div>
+    </div>
+  `;
+
+  // Patient Summary Table
+  if (originalData) {
+    const tableData = [{
+      name: originalData.name || 'Unknown',
+      age: originalData.age || 'Unknown',
+      gender: originalData.gender || 'Unknown',
+      complaint: originalData.complaint || 'Not specified',
+      medical_history: originalData.medical_history || 'None',
+      current_medications: originalData.current_medications || 'None',
+      vital_signs: originalData.vital_signs || 'Not provided'
+    }];
+    
+    html += createMinimalTable(tableData);
+    
+    // Fixed download button styling to match DB query
+    html += `
+      <div style="margin: 15px 0;">
+        <button id="downloadPatientCsv" class="download-btn" style="background: transparent; border: 1px solid #444; color: #888; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 0.85rem; transition: all 0.2s;">Download Patient Data CSV</button>
+      </div>
+    `;
+  }
+
+
+
+  // Rest of your AI analysis rendering...
+ // Priority Treatment Plan - Convert to clean table
+if (aiAnalysis?.priority_order) {
+  html += `
+    <div class="ai-section">
+      <h3 class="ai-header" style="background: linear-gradient(135deg, #4a5c2a, #3d4d20); color: #fff;">⚡ Priority Treatment Plan</h3>
+      <div class="ai-content-box" style="border-left: 4px solid #d4a012;">
+        <div class="factor-explanation"><strong>Immediate clinical priorities (time-sensitive actions):</strong></div>
+        <table class="priority-treatment-table">
+          <thead>
+            <tr>
+              <th style="width: 60px;">Priority</th>
+              <th>Treatment Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${aiAnalysis.priority_order.map((action, index) => 
+              `<tr>
+                <td class="priority-number-cell">${index + 1}</td>
+                <td>${formatMedicalText(action)}</td>
+              </tr>`
+            ).join('')}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  `;
+}
+
+// Detailed Action Plan - Convert to clean table  
+if (aiAnalysis?.action_plan) {
+  html += `
+    <div class="ai-section">
+      <h3 class="ai-header" style="background: linear-gradient(135deg, #4a5c2a, #3d4d20); color: #fff;">📋 Detailed Clinical Action Plan</h3>
+      <div class="ai-content-box" style="border-left: 4px solid #7a4d96;">
+        <div class="factor-explanation"><strong>Step-by-step clinical protocol with specific interventions:</strong></div>
+        <table class="action-plan-table">
+          <thead>
+            <tr>
+              <th style="width: 80px;">Step</th>
+              <th>Clinical Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${aiAnalysis.action_plan.map((step, index) => 
+              `<tr>
+                <td class="step-number-cell">Step ${index + 1}</td>
+                <td>${formatMedicalText(step)}</td>
+              </tr>`
+            ).join('')}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  `;
+}
+
+
+  return html;
+}
+// Add this function with your other render functions
+function renderViewPatients(data) {
+  const patientFolders = data.patient_folders || [];
+  
+  let html = `
+    <div class="results-header">
+      <h2>👥 Patient Database</h2>
+      <div class="stats-row">
+        <span class="stat-item">${patientFolders.length} patients found</span>
+        <span class="stat-item">Local Test Data</span>
+        <span class="stat-item">Patient Folders</span>
+      </div>
+    </div>
+  `;
+
+  if (patientFolders.length === 0) {
+    html += `
+      <div class="text-content">
+        <h3>No Patients Found</h3>
+        <p>No patient folders are currently stored in the database.</p>
+        <p>Use the <strong>"Add Patient"</strong> button to add your first patient.</p>
+      </div>
+    `;
+    return html;
+  }
+
+  // Create table data from patient folders
+  const tableData = patientFolders.map(folder => {
+    return {
+      patient_id: folder.patient_id || 'Unknown',
+      csv_files: folder.csv_count || 0,
+      main_csv: folder.main_csv || 'No CSV found',
+      folder_size: folder.total_size ? `${(folder.total_size / 1024).toFixed(1)} KB` : '0 KB',
+      created: folder.created_at ? new Date(folder.created_at).toLocaleDateString() : 'Unknown',
+      last_modified: folder.updated_at ? new Date(folder.updated_at).toLocaleDateString() : 'Unknown'
+    };
+  });
+
+  html += createMinimalTable(tableData);
+
+  // Add download all button
+  html += `
+    <div style="margin: 15px 0;">
+      <button id="downloadAllPatients" class="download-btn" style="background: transparent; border: 1px solid #444; color: #888; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 0.85rem; transition: all 0.2s;">Download Patient List CSV</button>
+    </div>
+  `;
+
+  return html;
+}
+
+
+// Enhanced Helper Functions
+function formatMedicalText(text) {
+  if (!text) return '';
+  
+  let formatted = cleanText(text);
+  
+  // Format citations [1], [2] as superscript links
+  formatted = formatted.replace(/\[(\d+)\]/g, '<sup class="citation">[$1]</sup>');
+  
+  // Format bold medical terms
+  formatted = formatted.replace(/\*\*(.*?)\*\*/g, '<strong class="medical-term">$1</strong>');
+  
+  // Format medical conditions in parentheses
+  formatted = formatted.replace(/\(([^)]+)\)/g, '<span class="medical-note">($1)</span>');
+  
+  return formatted;
+}
+
+function formatVitalSigns(vitals) {
+  if (!vitals || typeof vitals !== 'object') return 'Not provided';
+  
+  return Object.entries(vitals)
+    .map(([key, value]) => `<span class="vital-sign"><strong>${key}:</strong> ${value}</span>`)
+    .join(', ');
+}
+
+function formatDetailedCitations(references, rawResponse) {
+  const citationMap = extractCitationDetails(rawResponse);
+  
+  return references.map((ref, index) => {
+    const citationNum = `[${index + 1}]`;
+    const details = citationMap[citationNum] || 'Medical reference';
+    
+    return `
+      <div class="citation-item">
+        <span class="citation-number">[${index + 1}]</span>
+        <span class="citation-details">${details}</span>
+      </div>
+    `;
+  }).join('');
+}
+
+function extractCitationDetails(rawResponse) {
+  const citationMap = {};
+  if (!rawResponse) return citationMap;
+  
+  // Extract citation details from the raw response
+  const lines = rawResponse.split('\n');
+  lines.forEach(line => {
+    if (line.includes('Mayo Clinic') && line.includes('[1]')) {
+      citationMap['[1]'] = 'Mayo Clinic: Leg pain—when to see a doctor, trauma red flags, and initial management';
+    }
+    if (line.includes('Fabbri') && line.includes('[2]')) {
+      citationMap['[2]'] = 'Fabbri et al., 2023: Pain management in trauma, importance of rapid analgesia, and immobilization';
+    }
+  });
+  
+  return citationMap;
+}
+
+function cleanText(text) {
+  if (!text) return '';
+  return text.replace(/^["']|["']$/g, '').trim();
+}
+
+// Add this function with your other utility functions
+function setupPatientListDownloadButton(data) {
+  setTimeout(() => {
+    const downloadAllBtn = document.getElementById('downloadAllPatients');
+    if (downloadAllBtn && data.patient_folders) {
+      downloadAllBtn.addEventListener('click', () => {
+        const csvData = convertPatientFoldersToCSV(data.patient_folders);
+        const blob = new Blob([csvData], { type: 'text/csv' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `patient_database_${new Date().toISOString().split('T')[0]}.csv`;
+        link.click();
+        URL.revokeObjectURL(url);
+      });
+      
+      downloadAllBtn.addEventListener('mouseenter', () => {
+        downloadAllBtn.style.borderColor = '#666';
+        downloadAllBtn.style.color = '#ccc';
+      });
+      
+      downloadAllBtn.addEventListener('mouseleave', () => {
+        downloadAllBtn.style.borderColor = '#444';
+        downloadAllBtn.style.color = '#888';
+      });
+    }
+  }, 100);
+}
+
+function convertPatientFoldersToCSV(patientFolders) {
+  const headers = ['Patient ID', 'CSV Files', 'Main CSV', 'Folder Size', 'Created Date', 'Last Modified'];
+  const rows = patientFolders.map(folder => {
+    return [
+      folder.patient_id || 'Unknown',
+      folder.csv_count || 0,
+      folder.main_csv || 'No CSV found',
+      folder.total_size ? `${(folder.total_size / 1024).toFixed(1)} KB` : '0 KB',
+      folder.created_at ? new Date(folder.created_at).toLocaleDateString() : 'Unknown',
+      folder.updated_at ? new Date(folder.updated_at).toLocaleDateString() : 'Unknown'
+    ].map(field => `"${field}"`);
+  });
+  
+  return [headers.join(','), ...rows.map(row => row.join(','))].join('\n');
+}
+
+
+function renderDBQueryResults(data, summaryData) {
+  const ragData = data.rag_data || {};
+  const treatmentData = data.treatment_recommendations || {};
+  
+  let html = `
+    <div class="results-header">
+      <h2>Clinical Query Results</h2>
+      <div class="stats-row">
+        <span class="stat-item">${ragData.total_records || 0} records found</span>
+        <span class="stat-item">${(ragData.search_type || 'unknown').replace('_', ' ')}</span>
+        <span class="stat-item">Database query</span>
+      </div>
+    </div>
+  `;
+
+  if (ragData.raw_data && ragData.raw_data.length > 0) {
+    html += createMinimalTable(ragData.raw_data);
+    html += `
+      <div style="margin: 15px 0;">
+        <button id="downloadQueryCsv" class="download-btn" style="
+          background: transparent; border: 1px solid #444; color: #888; 
+          padding: 8px 16px; border-radius: 4px; cursor: pointer; 
+          font-size: 0.85rem; transition: all 0.2s;
+        ">Download Query Results CSV</button>
+      </div>
+    `;
+  }
+
+  if (treatmentData && treatmentData.success) {
+    const treatmentText = extractTreatmentText(treatmentData);
+    html += `
+      <div class="text-content">
+        <h3>Treatment Recommendations</h3>
+        <div>${treatmentText}</div>
+      </div>
+    `;
+  }
+
+  if (summaryData && summaryData.success) {
+    const summaryText = extractSummaryText(summaryData);
+    html += `
+      <div class="text-content">
+        <h3>Clinical Summary</h3>
+        <div>${summaryText}</div>
+      </div>
+    `;
+  }
+
+  if (ragData.sql_query) {
+    html += `
+      <div style="background: #222; margin: 20px 0; padding: 15px; border-radius: 8px;">
+        <h4 style="color: #c1e328; margin-bottom: 10px;">🔍 Query Details:</h4>
+        <p style="color: #ccc; background: #111; padding: 10px; border-radius: 6px; font-family: monospace;">${ragData.sql_query}</p>
+        <h4 style="color: #c1e328; margin: 15px 0 5px;">📝 Explanation:</h4>
+        <p style="color: #ccc; line-height: 1.6;">${ragData.explanation || 'Clinical data analysis'}</p>
+      </div>
+    `;
+  }
+
+  return html;
+}
+
+// ============================================================================
+// ADD PATIENT FORM FUNCTIONALITY
+// ============================================================================
+
+function initializeAddPatientForm() {
+  const modal = document.getElementById('addPatientModal');
+  const openBtn = document.getElementById('addPatientBtn');
+  const closeBtn = document.getElementById('closeModal');
+  const submitBtn = document.getElementById('submitPatientForm');
+
+  console.log('🔍 Initializing Add Patient Form...');
+
+  if (openBtn) {
+    openBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      console.log('📋 Opening Add Patient Modal');
+      modal.style.display = 'flex';
+    });
+  }
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+  }
+
+  if (submitBtn) {
+    submitBtn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      
+      try {
+        const patientJSON = constructPatientJSONFromForm();
+        console.log('🔍 Constructed Patient JSON:', patientJSON);
+        
+        if (!patientJSON.current_complaint || !patientJSON.current_complaint.trim()) {
+          throw new Error('Current complaint is required for AI analysis');
+        }
+
+        if (!patientJSON.personal_details.name) {
+          throw new Error('Patient name is required');
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '🧠 AI Analyzing Patient...';
+        
+        modal.style.display = 'none';
+        showResultsArea();
+        showAIProcessingLoader();
+
+        const result = await callAddPatientAPI(patientJSON);
+        console.log('🎯 Add Patient API Result:', result);
+
+        renderResults(result);
+        
+        setTimeout(() => {
+          showSuccessNotification(`✅ Patient ${patientJSON.personal_details.name} added with AI analysis!`);
+        }, 500);
+
+      } catch (error) {
+        console.error('❌ Add Patient Error:', error);
+        showErrorInResults(error.message);
+        modal.style.display = 'flex';
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = 'Add Patient & Analyze';
+      }
+    });
+  }
+
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+  }
+}
+
+function constructPatientJSONFromForm() {
+  function parseJSONField(fieldId) {
+    const element = document.getElementById(fieldId);
+    if (!element || !element.value.trim()) return null;
+    
+    try {
+      return JSON.parse(element.value);
+    } catch (error) {
+      console.warn(`Invalid JSON in field ${fieldId}:`, error);
+      return null;
+    }
+  }
+
+  function parseJSONArrayField(fieldId) {
+    const parsed = parseJSONField(fieldId);
+    return Array.isArray(parsed) ? parsed : [];
+  }
+
+  const patientDetails = parseJSONField('patientDetails') || {};
+  const conditions = parseJSONArrayField('conditions');
+  const medications = parseJSONArrayField('medications');
+  const observations = parseJSONField('observations') || {};
+  
+  const currentComplaint = document.getElementById('currentComplaint')?.value?.trim() || '';
+
+  return {
+    personal_details: {
+      name: patientDetails.name || '',
+      age: patientDetails.age || 0,
+      gender: patientDetails.gender || '',
+      date_of_birth: patientDetails.date_of_birth || '',
+      phone: patientDetails.phone || ''
+    },
+    medical_history: conditions,
+    current_complaint: currentComplaint,
+    current_medications: medications,
+    vital_signs: observations
+  };
+}
+
+// ============================================================================
+// MAIN QUERY EXECUTION
+// ============================================================================
+
+async function executeQuery(query) {
+  console.log('🚀 executeQuery called with:', query);
+  
+  if (!query || !query.trim()) {
+    console.log('❌ Empty query provided');
+    showError('Please enter a clinical query');
+    return;
+  }
+  
+  showResultsArea();
+  showLoading();
+  
+  try {
+    console.log('🔍 Calling text query API...');
+    const clinicalData = await callTextQueryAPI(query.trim(), currentSession);
+    
+    if (!clinicalData.success) {
+      throw new Error(clinicalData.error || 'Clinical query failed');
+    }
+    
+    let summaryData = null;
+    if (clinicalData.rag_data && clinicalData.rag_data.raw_data && clinicalData.rag_data.raw_data.length > 0) {
+      try {
+        console.log('🧠 Generating AI summary...');
+        summaryData = await callSummarizeAPI(clinicalData.rag_data, query.trim());
+      } catch (summaryError) {
+        console.warn('⚠️ Summary generation failed (non-critical):', summaryError.message);
+      }
+    }
+    
+    console.log('✅ Query pipeline completed successfully');
+    renderResults(clinicalData, summaryData);
+    
+  } catch (error) {
+    console.error('❌ Query pipeline failed:', error);
+    showError(error.message);
+  }
+}
+
+// ============================================================================
+// SESSION MANAGEMENT
+// ============================================================================
+
+// In your handleNewSession function, update this section:
+async function handleNewSession() {
+  try {
+    const result = await callNewSessionAPI();
+    if (result.success) {
+      currentSession = result.session_id;
+      
+      // Clear results
+      if (resultsContainer) {
+        resultsContainer.remove();
+        resultsContainer = null;
+      }
+      
+      const mainContent = document.getElementsByClassName('main-content')[0];
+      const welcomeContainer = document.getElementsByClassName('welcome-container')[0];
+      const searchContainer = document.getElementsByClassName('search-container')[0];
+      
+      // FIXED: Reset main content alignment properly
+      mainContent.style.alignItems = 'center';
+      mainContent.style.justifyContent = 'center';
+      mainContent.style.paddingTop = '20px';
+      mainContent.style.display = 'flex'; // Ensure flex display
+      
+      // Show welcome screen
+      if (!mainContent.contains(welcomeContainer)) {
+        mainContent.appendChild(welcomeContainer);
+      }
+      
+      // FIXED: Keep search container in proper position
+      if (!welcomeContainer.contains(searchContainer)) {
+        welcomeContainer.appendChild(searchContainer);
+      }
+      
+      welcomeContainer.style.display = 'flex'; // Ensure flex display
+      
+      // Reset and focus search input
+      const searchInput = document.getElementById('searchInput');
+      if (searchInput) {
+        searchInput.value = '';
+        searchInput.focus();
+      }
+      
+      showSuccessNotification(`New session started! Session ID: ${result.session_id.slice(0, 8)}...`);
+      console.log('New session created:', currentSession);
+    } else {
+      throw new Error(result.error || 'Failed to create session');
+    }
+  } catch (error) {
+    console.error('New session failed:', error);
+    showError(`Failed to create new session: ${error.message}`);
+  }
+}
+
+
+// ============================================================================
+// SIDEBAR FUNCTIONALITY
+// ============================================================================
+
+function initializeEqualSplitSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  const toggleBtn = document.getElementById('toggleBtn');
+
+  function checkViewportAndCollapse() {
+    const viewportWidth = window.innerWidth;
+    const seventyFivePercent = window.screen.width * 0.75;
+    
+    if (viewportWidth < seventyFivePercent && viewportWidth > 768) {
+      sidebar.classList.add('collapsed');
+      sidebar.classList.remove('force-expanded');
+    } else if (viewportWidth >= seventyFivePercent) {
+      sidebar.classList.remove('collapsed');
+    }
+  }
+
+  if (sidebar) {
+    checkViewportAndCollapse();
+    sidebar.classList.add('collapsed');
+  }
+
+  if (toggleBtn && sidebar) {
+    toggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      sidebar.classList.toggle('collapsed');
+      
+      if (!sidebar.classList.contains('collapsed')) {
+        sidebar.classList.add('force-expanded');
+      } else {
+        sidebar.classList.remove('force-expanded');
+      }
+    });
+  }
+
+  window.addEventListener('resize', checkViewportAndCollapse);
+
+  const newSessionBtn = document.getElementById('newSessionBtn');
+  const viewPatientsBtn = document.getElementById('viewPatientsBtn');
+
+  if (newSessionBtn) {
+    newSessionBtn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      await handleNewSession();
+    });
+  }
+
+  if (viewPatientsBtn) {
+  viewPatientsBtn.addEventListener('click', async (e) => {
+    e.preventDefault();
+    await handleViewPatients();
+  });
+}
+
+}
+
+// ============================================================================
+// MAIN EVENT LISTENERS
+// ============================================================================
+
+function connectEventListeners() {
+  console.log('🔗 Connecting event listeners...');
+  
+  const searchInput = document.getElementById('searchInput');
+  const searchButton = document.getElementById('searchButton');
+
+  if (searchInput) {
+    searchInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        const query = searchInput.value.trim();
+        console.log('⌨️ Enter pressed, query:', query);
+        if (query) {
+          executeQuery(query);
+        }
+      }
+    });
+    
+    searchInput.focus();
+  }
+
+  if (searchButton) {
+    searchButton.addEventListener('click', () => {
+      const query = searchInput.value.trim();
+      console.log('🖱️ Search button clicked, query:', query);
+      if (query) {
+        executeQuery(query);
+      }
+    });
+  }
+
+  console.log('✅ All event listeners connected successfully!');
+}
+
+// ============================================================================
+// INITIALIZATION
+// ============================================================================
+
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('📄 DOM Content Loaded - Initializing DocPilot...');
+  
+  connectEventListeners();
+  initializeAddPatientForm();
+  initializeEqualSplitSidebar();
+  
+  callHealthAPI()
+    .then(health => {
+      console.log('✅ Backend connected successfully:', health);
+    })
+    .catch(error => {
+      console.warn('⚠️ Backend connection test failed:', error.message);
+    });
+});
+
+window.addEventListener('load', function() {
+  console.log('🏥 DocPilot Clinical AI Assistant loaded!');
+  console.log('✅ Ready for clinical queries and AI patient analysis!');
+});
+
+// Add required CSS animations
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  @keyframes slideInRight {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+  }
+  .download-btn:hover {
+    border-color: #666 !important;
+    color: #ccc !important;
+  }
+`;
+document.head.appendChild(style);
+
+console.log('✅ DocPilot JavaScript fully loaded and initialized');
+// ============================================================================
+// DEBUG: FORM SUBMISSION OVERRIDE
+// ============================================================================
+
+// Override ALL form submissions to prevent default browser behavior
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('🔍 DEBUG: DOM loaded, setting up form debugging...');
+  
+  // Find the form
+  const form = document.querySelector('form');
+  const modal = document.getElementById('addPatientModal');
+  const submitBtn = document.getElementById('submitPatientForm');
+  
+  console.log('🔍 DEBUG: Form found:', !!form);
+  console.log('🔍 DEBUG: Modal found:', !!modal);
+  console.log('🔍 DEBUG: Submit button found:', !!submitBtn);
+  
+  // Override form submission
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      console.log('🚫 DEBUG: Form submission intercepted and prevented!');
+      e.preventDefault();
+      e.stopPropagation();
+      return false;
+    });
+  }
+  
+  // Ensure our button handler works
+  if (submitBtn) {
+    // Remove any existing event listeners
+    const newSubmitBtn = submitBtn.cloneNode(true);
+    submitBtn.parentNode.replaceChild(newSubmitBtn, submitBtn);
+    
+    newSubmitBtn.addEventListener('click', function(e) {
+      console.log('🎯 DEBUG: Submit button clicked!');
+      e.preventDefault();
+      e.stopPropagation();
+      
+      handlePatientFormSubmission();
+      return false;
+    });
+  }
+});
+
+// Dedicated form handler
+async function handlePatientFormSubmission() {
+  console.log('🚀 DEBUG: handlePatientFormSubmission called');
+  
+  const modal = document.getElementById('addPatientModal');
+  const submitBtn = document.getElementById('submitPatientForm');
+  
+  try {
+    console.log('📋 DEBUG: Constructing patient JSON...');
+    
+    // Get form data
+    const patientDetails = document.getElementById('patientDetails')?.value || '{}';
+    const conditions = document.getElementById('conditions')?.value || '[]';
+    const medications = document.getElementById('medications')?.value || '[]';
+    const observations = document.getElementById('observations')?.value || '{}';
+    const currentComplaint = document.getElementById('currentComplaint')?.value || '';
+    
+    console.log('🔍 DEBUG: Raw form values:');
+    console.log('  - patientDetails:', patientDetails);
+    console.log('  - conditions:', conditions);
+    console.log('  - medications:', medications);
+    console.log('  - observations:', observations);
+    console.log('  - currentComplaint:', currentComplaint);
+    
+    // Parse JSON fields
+    let parsedDetails, parsedConditions, parsedMedications, parsedObservations;
+    
+    try {
+      parsedDetails = JSON.parse(patientDetails);
+      parsedConditions = JSON.parse(conditions);
+      parsedMedications = JSON.parse(medications);
+      parsedObservations = JSON.parse(observations);
+    } catch (parseError) {
+      console.error('❌ DEBUG: JSON parsing failed:', parseError);
+      alert('Invalid JSON in form fields. Please check your input.');
+      return;
+    }
+    
+    // Construct API payload
+    const patientJSON = {
+      personal_details: parsedDetails,
+      medical_history: parsedConditions,
+      current_complaint: currentComplaint,
+      current_medications: parsedMedications,
+      vital_signs: parsedObservations
+    };
+    
+    console.log('🎯 DEBUG: Constructed patient JSON:', patientJSON);
+    
+    // Validate
+    if (!currentComplaint.trim()) {
+      alert('Current complaint is required');
+      return;
+    }
+    
+    if (!parsedDetails.name) {
+      alert('Patient name is required');
+      return;
+    }
+    
+    // Show loading
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '🧠 AI Analyzing...';
+    }
+    
+    // Close modal
+    if (modal) {
+      modal.style.display = 'none';
+    }
+    
+    // Show results area
+    showResultsArea();
+    showAIProcessingLoader();
+    
+    console.log('📡 DEBUG: Calling API...');
+    
+    // Call API
+    const response = await fetch('http://localhost:8000/api/add-patient', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(patientJSON)
+    });
+    
+    console.log('📡 DEBUG: API Response status:', response.status);
+    
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.detail || `API Error: ${response.status}`);
+    }
+    
+    const result = await response.json();
+    console.log('✅ DEBUG: API Success:', result);
+    
+    // Render results
+    renderResults(result);
+    
+    // Success notification
+    setTimeout(() => {
+      showSuccessNotification(`✅ Patient ${parsedDetails.name} added with AI analysis!`);
+    }, 500);
+    
+  } catch (error) {
+    console.error('❌ DEBUG: Error in form submission:', error);
+    showErrorInResults(error.message);
+    
+    // Reopen modal on error
+    if (modal) {
+      modal.style.display = 'flex';
+    }
+  } finally {
+    // Reset button
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = 'Add Patient & Analyze';
+    }
+  }
+}
+
+console.log('🔧 DEBUG: Form override script loaded');
+
+
+</script>
+</body>
+</html>
